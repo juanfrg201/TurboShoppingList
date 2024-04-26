@@ -1,0 +1,8 @@
+<!-- app/componnets/group_card_compopnents.html.erb -->
+<div id="products" class="group-of-products">
+  <% @products.each do |product| %>
+    <% if !product.purchased %>
+      <%= render ProductCardComponent.new(product: product) %>
+    <% end %>
+  <% end %>
+</div>

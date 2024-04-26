@@ -1,0 +1,10 @@
+<div class="product-card" data-turbo-frame>
+  <h2><%= @product.name %></h2>
+  <p>Purchase Date: <%= @product.purchase_date %></p>
+
+  <% if !@product.purchased? %>
+    <%= form_with(model: @product, url: mark_as_purchased_product_path(@product), method: :put, local: true) do |form| %>
+      <%= form.button "Comprar producto", class: "btn btn-sm btn-danger mark-as-purchased-btn", data: { product_id: @product.id } %>
+    <% end %>
+  <% end %>
+</div>

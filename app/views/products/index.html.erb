@@ -1,2 +1,14 @@
+<!-- app/views/products/index.html.erb -->
 <h1>Products#index</h1>
 <p>Find me in app/views/products/index.html.erb</p>
+
+<%= render NewProductFormComponent.new(product: @product) %>
+
+<div id="products-container">
+  <% @products.each do |date, products| %>
+    <h2><%= date %></h2>
+    <%= render GroupOfProductsComponent.new(products: products) %>
+  <% end %>
+</div>
+
+

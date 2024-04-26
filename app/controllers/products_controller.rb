@@ -1,22 +1,29 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.order(purchase_date: :asc).group_by(&:purchase_date)
+    @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
     @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
-    if @product.save
-      render turbo_stream: turbo_stream.append("products", partial: "product", locals: { product: @product })
-    else
-      # Handle validation errors
+    respond_to do |format|
+      if @product.save 
+        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+        format.turbo_stream { render :create, locals: {products: @product } }
+      else
+        format.turbo_stream { render :index, status: :ok, locals: {product: @product}}
+      end
     end
   end
 
   def mark_as_purchased
     @product = Product.find(params[:id])
-    @product.update(purchased: true)
-    render turbo_stream: turbo_stream.remove("product_#{params[:id]}")
+    respond_to do |format|
+      if @product.update(purchased: true)
+        format.turbo_stream { render turbo_stream: turbo_stream.remove(@product) }
+        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      end
+    end
   end
 
   private

@@ -1,0 +1,4 @@
+<!-- app/views/products/create.turbo_stream.erb -->
+<%= turbo_stream.prepend "products" do %>
+  <%= render ProductCardComponent.new(product: @product) %>
+<% end %>
