@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
     respond_to do |format|
       if @product.save 
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }

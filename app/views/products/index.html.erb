@@ -6,9 +6,10 @@
 
 <div id="products-container">
   <% @products.each do |date, products| %>
-    <h2><%= date %></h2>
-    <%= render GroupOfProductsComponent.new(products: products) %>
+    <div id="products_<%= date.strftime('%Y-%m-%d') %>" class="group-of-products">
+      <h2><%= date %></h2>
+      <%= render GroupOfProductsComponent.new(products: products) %>
+    </div>
   <% end %>
 </div>
-
 
