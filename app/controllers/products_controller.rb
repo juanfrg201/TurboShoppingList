@@ -20,11 +20,15 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     respond_to do |format|
       if @product.update(purchased: true)
-        format.turbo_stream { render turbo_stream: turbo_stream.remove(@product) }
-        format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+        format.turbo_stream { render :mark_as_purchased, locals: {product: @product} }
+        format.html { redirect_to products_url, notice: 'Product was successfully marked as purchased.' }
+      else
+        format.html { render :index }
       end
     end
   end
+  
+  
 
   private
 
