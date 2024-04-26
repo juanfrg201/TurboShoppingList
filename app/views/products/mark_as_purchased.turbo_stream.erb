@@ -1,2 +1,12 @@
 <!-- app/views/products/mark_as_purshased.turbo_stream.erb -->
-<%= turbo_stream.remove(product) %>
+<% container_id = "products_#{product.purchase_date.strftime('%Y-%m-%d')}" %>
+<% if Product.all.present? %>
+  <% if Product.where(purchase_date: Date.today, purchased: false).present? %>
+    <%= turbo_stream.remove(product) %>
+  <% else %>
+    <%= turbo_stream.remove(product) %>
+    <%= turbo_stream.remove(container_id) %>
+  <% end %>
+<% end %>
+
+

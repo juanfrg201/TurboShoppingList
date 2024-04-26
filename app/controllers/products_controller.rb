@@ -19,6 +19,7 @@ class ProductsController < ApplicationController
 
   def mark_as_purchased
     @product = Product.find(params[:id])
+    @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
     respond_to do |format|
       if @product.update(purchased: true)
         format.turbo_stream { render :mark_as_purchased, locals: {product: @product} }
