@@ -12,7 +12,8 @@ class ProductsController < ApplicationController
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
         format.turbo_stream { render :create, locals: {products: @product } }
       else
-        format.turbo_stream { render :index, status: :ok, locals: {product: @product}}
+        format.html { render :index, error: 'Producto no se pudo crear', status: :unprocessable_entity }
+        format.turbo_stream { render :create, locals: {products: @product }}
       end
     end
   end
