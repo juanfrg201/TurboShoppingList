@@ -1,0 +1,23 @@
+<% container_id = "products_#{@product.purchase_date.strftime('%Y-%m-%d')}" %>
+<% existing_container = @products.key?(@product.purchase_date) %>
+
+<% if existing_container %>
+  <%= turbo_stream.replace container_id do %>
+    <div id="<%= container_id %>" class="group-of-products">
+      <h2><%= @product.purchase_date %></h2>
+      <%= render GroupOfProductsComponent.new(products: @products[@product.purchase_date] << @product) %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.append "products-container" do %>
+    <div id="<%= container_id %>" class="group-of-products">
+      <h2><%= @product.purchase_date %></h2>
+      <%= render GroupOfProductsComponent.new(products: [@product]) %>
+    </div>
+  <% end %>
+<% end %>
+
+
+
+
+
