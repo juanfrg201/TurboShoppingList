@@ -1,31 +1,42 @@
 <%= turbo_frame_tag "new_product" do %>
-  <%= form_with(model: @product, local: true) do |form| %>
-    <div>
-      <%= form.label :name %>
-      <%= form.text_field :name, value: "Product1" %>
+  <%= form_with(model: @product, local: true, class: "box") do |form| %>
+    <div class="field">
+      <%= form.label :name, class: "label" %>
+      <div class="control">
+        <%= form.text_field :name, class: "input", placeholder: "Nombre del Producto" %>
+      </div>
     </div>
-    <div>
-      <%= form.label :purchase_date %>
-      <%= form.date_field :purchase_date, value: Date.today %>
+    <div class="field">
+      <%= form.label :purchase_date, class: "label" %>
+      <div class="control">
+        <%= form.date_field :purchase_date, class: "input" %>
+      </div>
     </div>
-    <div>
-      <%= form.label :store_section_id %>
-      <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id) %>
+    <div class="field">
+      <%= form.label :store_section_id, class: "label" %>
+      <div class="control">
+        <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select" %>
+      </div>
     </div>
-    <div>
-      <%= form.label :purchased %>
-      <%= form.check_box :purchased, checked: false %>
+    <div class="field">
+      <%= form.label :purchased, class: "checkbox" do %>
+        <%= form.check_box :purchased, class: "checkbox" %>
+        ¿Comprado?
+      <% end %>
     </div>
-    <div>
-      <%= form.label :quantity %>
-      <%= form.number_field :quantity %>
+    <div class="field">
+      <%= form.label :quantity, class: "label" %>
+      <div class="control">
+        <%= form.number_field :quantity, class: "input" %>
+      </div>
     </div>
-    <div>
-      <%= form.submit "Add Product" %>
+    <div class="field">
+      <div class="control">
+        <%= form.submit "Agregar Producto", class: "button is-primary", onclick: "closeModal()" %>
+      </div>
     </div>
   <% end %>
-
-
 <% end %>
+
 
 
