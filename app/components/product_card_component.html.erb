@@ -11,7 +11,7 @@
           <%= form_with(model: @product, url: mark_as_purchased_product_path(@product), method: :put, local: true) do |form| %>
             <div class="field is-grouped is-grouped-right"> <!-- Utiliza las clases de Bulma para alinear a la derecha -->
               <div class="control">
-                <%= form.button "Comprar producto", class: "button is-danger mark-as-purchased-btn", data: { product_id: @product.id } %>
+                <%= form.button "Comprar producto", class: "button is-info mark-as-purchased-btn", data: { product_id: @product.id } %>
               </div>
             </div>          
           <% end %>

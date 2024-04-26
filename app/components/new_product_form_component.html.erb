@@ -1,33 +1,33 @@
 <%= turbo_frame_tag "new_product" do %>
   <%= form_with(model: @product, local: true, class: "box") do |form| %>
     <div class="field">
-      <%= form.label :name, class: "label" %>
+      <%= form.label :name, class: "label", required: true %>
       <div class="control">
-        <%= form.text_field :name, class: "input", placeholder: "Nombre del Producto" %>
+        <%= form.text_field :name, class: "input", placeholder: "Nombre del Producto", required: true %>
       </div>
     </div>
     <div class="field">
-      <%= form.label :purchase_date, class: "label" %>
+      <%= form.label :purchase_date, class: "label", required: true %>
       <div class="control">
-        <%= form.date_field :purchase_date, class: "input" %>
+        <%= form.date_field :purchase_date, class: "input", required: true %>
       </div>
     </div>
     <div class="field">
-      <%= form.label :store_section_id, class: "label" %>
+      <%= form.label :store_section_id, class: "label", required: true %>
       <div class="control">
-        <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select" %>
+        <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select", required: true %>
       </div>
     </div>
     <div class="field">
       <%= form.label :purchased, class: "checkbox" do %>
         <%= form.check_box :purchased, class: "checkbox" %>
-        ¿Comprado?
+        ¿Comprado? (Marca esta casilla si el producto ha sido comprado)
       <% end %>
     </div>
     <div class="field">
       <%= form.label :quantity, class: "label" %>
       <div class="control">
-        <%= form.number_field :quantity, class: "input" %>
+        <%= form.number_field :quantity, class: "input" , required: true %>
       </div>
     </div>
     <div class="field">
