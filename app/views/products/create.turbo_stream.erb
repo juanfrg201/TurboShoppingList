@@ -1,17 +1,9 @@
 <!-- app/views/products/create.turbo_stream.erb -->
-<% container_id = "products_#{@product.purchase_date.strftime('%Y-%m-%d')}" %>
-<% existing_container = @products.key?(@product.purchase_date) %>
-
-<% if !@product.purchased && existing_container %>
-  <%= turbo_stream.replace container_id do %>
-    <%= render GroupOfProductsComponent.new(products: @products[@product.purchase_date] << @product, date: @product.purchase_date.strftime('%Y-%m-%d')) %>
-  <% end %>
-<% elsif !@product.purchased %>
-  <%= turbo_stream.append "products-container" do %>
-    <%= render GroupOfProductsComponent.new(products: [@product], date: @product.purchase_date.strftime('%Y-%m-%d')) %>
+<%= turbo_stream.append "products-container" do %>
+  <% @products.each do |date, products| %>
+    <%= render GroupOfProductsComponent.new(products: products, date: date) %>
   <% end %>
 <% end %>
-
 
 
 

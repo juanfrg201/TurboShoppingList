@@ -9,11 +9,12 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     respond_to do |format|
       if @product.save 
+        @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-        format.turbo_stream { render :create, locals: {products: @product } }
+        format.turbo_stream { render :create, locals: {products: @products } }
       else
         format.html { render :index, error: 'Producto no se pudo crear', status: :unprocessable_entity }
-        format.turbo_stream { render :create, locals: {products: @product }}
+        format.turbo_stream { render :create, locals: {products: @products }}
       end
     end
   end
