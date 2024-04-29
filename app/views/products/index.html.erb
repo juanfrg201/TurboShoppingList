@@ -19,10 +19,7 @@
         <h2 class="title is-3">Productos</h2>
         <div id="products-container">
           <% @products.each do |date, products| %>
-            <div id="products_<%= date.strftime('%Y-%m-%d') %>" class="group-of-products mt-4">
-              <h3><%= l(date, format: :default) %></h3>
-              <%= render GroupOfProductsComponent.new(products: products) %>
-            </div>
+            <%= render GroupOfProductsComponent.new(products: products, date: date) %>
           <% end %>
         </div>
       </div>

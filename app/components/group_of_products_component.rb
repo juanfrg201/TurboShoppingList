@@ -2,7 +2,9 @@
 
 class GroupOfProductsComponent < ViewComponent::Base
   include Turbo::FramesHelper
-  def initialize(products:)
+  def initialize(products:, date:)
     @products = products
+    @date = date.to_date
+    @container_id = "products_#{@date}"
   end
 end
