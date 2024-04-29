@@ -1,39 +1,52 @@
 require 'rails_helper'
 
-RSpec.describe "Products", type: :request do
-  describe "GET /products" do
-    it "renders the index template" do
+RSpec.describe 'Products', type: :request do
+  before(:each) do
+    @store_section = StoreSection.create!(name: 'Meat')
+    @product = Product.create!(
+      name: 'Chicken',
+      purchase_date: Date.today,
+      store_name: 'Grocery Store',
+      store_section: @store_section,
+      purchased: false,
+      quantity: 5
+    )
+  end
+
+  describe 'GET /products' do
+    it 'renders the index template' do
       get products_path
       expect(response).to be_successful
     end
   end
 
-  describe "POST #create" do
-    context "with valid attributes" do
-      it "saves a new product" do
-        product_params = { name: "producto", purchase_date: Date.today, store_name: "Store", store_section_id: 1, purchased: false, quantity: 3 }
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      it 'saves a new product' do
+        product_params = { name: 'producto', purchase_date: Date.today, store_name: 'Store', store_section_id: 1,
+                           purchased: false, quantity: 3 }
         post products_path, params: { product: product_params }
         expect(response).to redirect_to(products_url)
-      end  
+      end
     end
 
-    context "with invalid attributes" do
-      it "does not save a new product" do
-        product_params = { name: "" }
+    context 'with invalid attributes' do
+      it 'does not save a new product' do
+        product_params = { name: '' }
         post products_path, params: { product: product_params }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
-  describe "PUT /products/:id/mark_as_purchased" do
-    context "with valid product ID and purchase update" do
-      it "marks the product as purchased and renders the mark_as_purchased template in turbo_stream format" do
-        @store_section = StoreSection.create!(name: "Meat")
+  describe 'PUT /products/:id/mark_as_purchased' do
+    context 'with valid product ID and purchase update' do
+      it 'marks the product as purchased and renders the mark_as_purchased template in turbo_stream format' do
+        @store_section = StoreSection.create!(name: 'Meat')
         @product = Product.create!(
-          name: "Chicken",
+          name: 'Chicken',
           purchase_date: Date.today,
-          store_name: "Grocery Store",
+          store_name: 'Grocery Store',
           store_section: @store_section,
           purchased: false,
           quantity: 5
@@ -44,12 +57,11 @@ RSpec.describe "Products", type: :request do
       end
     end
 
-    context "with invalid product ID" do
-      it "returns a 404 Not Found" do
-        put mark_as_purchased_product_path(12345)
+    context 'with invalid product ID' do
+      it 'returns a 404 Not Found' do
+        put mark_as_purchased_product_path(12_345)
         expect(response).to have_http_status(:not_found)
       end
     end
   end
 end
-

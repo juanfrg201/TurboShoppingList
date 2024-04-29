@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_25_223034) do
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.date "purchase_date"
-    t.string "store_name"
-    t.integer "store_section_id", null: false
-    t.boolean "purchased"
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["store_section_id"], name: "index_products_on_store_section_id"
+ActiveRecord::Schema[7.1].define(version: 20_240_425_223_034) do
+  create_table 'products', force: :cascade do |t|
+    t.string 'name'
+    t.date 'purchase_date'
+    t.string 'store_name'
+    t.integer 'store_section_id', null: false
+    t.boolean 'purchased'
+    t.integer 'quantity'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['store_section_id'], name: 'index_products_on_store_section_id'
   end
 
-  create_table "store_sections", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'store_sections', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  add_foreign_key "products", "store_sections"
+  add_foreign_key 'products', 'store_sections'
 end

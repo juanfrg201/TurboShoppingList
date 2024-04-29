@@ -9,9 +9,9 @@
 #   end
 if StoreSection.all.present?
   StoreSection.all.destroy_all
-  StoreSection.create(name: "Meat")
-  StoreSection.create(name: "Dairy")
+  StoreSection.create(name: 'Meat')
+  StoreSection.create(name: 'Dairy')
 else
-  StoreSection.create(name: "Meat")
-  StoreSection.create(name: "Dairy")
+  StoreSection.create(name: 'Meat')
+  StoreSection.create(name: 'Dairy')
 end
