@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_products
+  before_action :set_products, only: [:index]
 
   def index
     @product = Product.new
