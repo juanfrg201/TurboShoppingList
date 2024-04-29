@@ -235,6 +235,8 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.1)
+    rspec-viewcomponent (0.1.0)
+      activesupport (>= 5.0.0, < 8.0)
     rubyzip (2.3.2)
     sass-embedded (1.75.0-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
@@ -309,6 +311,7 @@ DEPENDENCIES
   rails-controller-testing
   redis (>= 4.0.1)
   rspec-rails
+  rspec-viewcomponent
   sass-rails (~> 6.0)
   selenium-webdriver
   sprockets-rails
