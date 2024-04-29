@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # Instalación de rbenv si no está instalado
+sudo apt install rbenv
 if ! command -v rbenv &> /dev/null; then
     echo "Instalando rbenv..."
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+    echo 'eval "$(rbenv init -)"' >> ~/.zshrc
     source ~/.bashrc
 fi
 
