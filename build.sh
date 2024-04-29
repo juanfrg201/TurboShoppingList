@@ -30,6 +30,22 @@ if ! command -v rails &> /dev/null; then
   fi
 fi
 
+rails_version=$(rails -v | awk '{print $2}')
+desired_rails_version="7.1.3"
+
+if [[ "$rails_version" != "$desired_rails_version" ]]; then
+    echo "La versión de Rails instalada ($rails_version) no coincide con la versión deseada ($desired_rails_version). Instalando la versión deseada..."
+
+    # Instala la versión específica de Rails
+    gem install rails --version "$desired_rails_version"
+
+    # Verifica si la instalación fue exitosa
+    if ! gem list rails -i -v "$desired_rails_version" &> /dev/null; then
+        echo "Error: La instalación de Rails $desired_rails_version ha fallado. No se puede continuar con la construcción."
+        exit 1
+    fi
+fi
+
 
 # Verifica si Bundler está instalado
 if ! command -v bundle &> /dev/null; then
@@ -39,5 +55,9 @@ fi
 
 echo "Instalando dependencias..."
 bundle install
-echo "Finalización de la instalación. Recuerda ejecutar 'rails db:create'."
+
+echo "Creando la base de datos..."
 rails db:create
+
+echo "Compilando assets de Rails..."
+rails assets:precompile
