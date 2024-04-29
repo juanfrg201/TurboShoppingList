@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :store_section, optional: true
 
-  #validations
+  # validations
   validates :name, presence: true, length: { maximum: 128 }, format: { without: /[%$&@+|]/ }
   validates :purchase_date, presence: true
   validates :store_name, length: { maximum: 64 }

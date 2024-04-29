@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_products
+  before_action :set_products, only: [:index]
 
   def index
     @product = Product.new
@@ -8,13 +8,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     respond_to do |format|
-      if @product.save 
+      if @product.save
         @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
-        format.turbo_stream { render :create, locals: {products: @products } }
+        format.turbo_stream { render :create, locals: { products: @products } }
       else
         format.html { render :index, error: 'Producto no se pudo crear', status: :unprocessable_entity }
-        format.turbo_stream { render :create, locals: {products: @products }}
+        format.turbo_stream { render :create, locals: { products: @products } }
       end
     end
   end
@@ -23,15 +23,13 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     respond_to do |format|
       if @product.update(purchased: true)
-        format.turbo_stream { render :mark_as_purchased, locals: {product: @product} }
+        format.turbo_stream { render :mark_as_purchased, locals: { product: @product } }
         format.html { redirect_to products_url, notice: 'Product was successfully marked as purchased.' }
       else
         format.html { render :index }
       end
     end
   end
-  
-  
 
   private
 
