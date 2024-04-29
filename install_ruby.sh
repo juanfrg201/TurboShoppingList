@@ -1,25 +1,28 @@
 #!/bin/bash
 
-# Clona el repositorio de rbenv desde GitHub si no está instalado
-if [ ! -d "$HOME/.rbenv" ]; then
+# Instalación de rbenv si no está instalado
+if ! command -v rbenv &> /dev/null; then
+    echo "Instalando rbenv..."
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    source ~/.bashrc
 fi
 
-# Agrega rbenv al PATH de tu shell
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# Clona el plugin ruby-build si no está instalado
-if [ ! -d "$HOME/.rbenv/plugins/ruby-build" ]; then
+# Instalación de ruby-build si no está instalado
+if [ ! -d ~/.rbenv/plugins/ruby-build ]; then
+    echo "Instalando ruby-build..."
     git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi
 
-# Instala Ruby 3.2.3 si no está instalado
-if ! rbenv versions | grep -q "3.2.3"; then
-    rbenv install 3.2.3
-fi
+# Instalación de Ruby 3.2.3
+echo "Instalando Ruby 3.2.3..."
+rbenv install 3.2.3
 
-# Configura la versión de Ruby como local en el directorio actual
+# Configuración global de Ruby para la versión 3.2.3
 rbenv local 3.2.3
 
-echo "Ruby instalado correctamente."
+# Verificación de la instalación
+ruby -v
+
+echo "La instalación de Ruby 3.2.3 se ha completado correctamente."

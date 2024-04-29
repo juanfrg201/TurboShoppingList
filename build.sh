@@ -3,20 +3,7 @@
 echo "Iniciando script de construcción..."
 
 
-if ! command -v ruby &> /dev/null; then
-    echo "Ruby no está instalado. Instalando..."
-    ./install_ruby.sh
-else
-    # Verifica la versión de Ruby instalada
-    ruby_version=$(ruby -v | awk '{print $2}')
-    if [[ "$ruby_version" != "3.2.3" ]]; then
-        echo "La versión de Ruby instalada no es la 3.2.3. Instalando la versión 3.2.3..."
-        # Ejecuta el script de instalación de Ruby 3.2.3
-        ./install_ruby.sh
-    else
-        echo "Ruby ya está instalado y es la versión 3.2.3"
-    fi
-fi
+./install_ruby.sh
 
 # Verifica si Rails está instalado
 if ! command -v rails &> /dev/null; then
@@ -37,7 +24,7 @@ if [[ "$rails_version" != "$desired_rails_version" ]]; then
     echo "La versión de Rails instalada ($rails_version) no coincide con la versión deseada ($desired_rails_version). Instalando la versión deseada..."
 
     # Instala la versión específica de Rails
-    gem install rails --version "$desired_rails_version"
+    ./install_rails.sh
 
     # Verifica si la instalación fue exitosa
     if ! gem list rails -i -v "$desired_rails_version" &> /dev/null; then
