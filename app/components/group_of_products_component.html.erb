@@ -1,8 +1,11 @@
-<!-- app/componnets/group_card_compopnents.html.erb -->
-<div id="products" class="group-of-products">
-  <% @products.each do |product| %>
-    <% if !product.purchased %>
-      <%= render ProductCardComponent.new(product: product) %>
+<!-- app/components/group_of_products_component.html.erb -->
+<div id="<%= @container_id %>" class="group-of-products mt-3">
+  <h3><%= l(@date, format: :default) %></h3>
+  <div id="products" class="group-of-products">
+   <% @products.sort_by { |product| product.purchase_date }.each do |product| %>
+      <% if !product.purchased %>
+        <%= render ProductCardComponent.new(product: product) %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>

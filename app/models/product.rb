@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :store_section
+  belongs_to :store_section, optional: true
 
   #validations
   validates :name, presence: true, length: { maximum: 128 }, format: { without: /[%$&@+|]/ }

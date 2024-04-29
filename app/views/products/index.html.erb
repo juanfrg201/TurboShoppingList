@@ -1,15 +1,41 @@
 <!-- app/views/products/index.html.erb -->
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
-
-<%= render NewProductFormComponent.new(product: @product) %>
-
-<div id="products-container">
-  <% @products.each do |date, products| %>
-    <div id="products_<%= date.strftime('%Y-%m-%d') %>" class="group-of-products">
-      <h2><%= date %></h2>
-      <%= render GroupOfProductsComponent.new(products: products) %>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <aside class="is-medium menu">
+          <p class="menu-label is-flex">
+            Producto
+          </p>
+          <div class="is-flex mt-3">
+            <button class="button is-link" onclick="openModal()">
+              Crear producto
+            </button>
+          </div>
+        </aside>
+      </div>
+      <div class="column is-9">
+        <div class="content is-medium">
+          <h2 class="title is-3">Productos</h2>
+          <div id="products-container">
+            <% @products.each do |date, products| %>
+              <%= render GroupOfProductsComponent.new(products: products, date: date) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+</section>
 
+<%= render "create_popup" %>
+
+<script>
+  function openModal() {
+    document.getElementById('myModal').classList.add('is-active');
+  }
+
+  function closeModal() {
+    document.getElementById('myModal').classList.remove('is-active');
+  }
+</script>
