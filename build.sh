@@ -4,8 +4,18 @@ echo "Iniciando script de construcción..."
 
 
 if ! command -v ruby &> /dev/null; then
-  echo "Ruby no está instalado. Instalando..."
-  ./install_ruby.sh
+    echo "Ruby no está instalado. Instalando..."
+    ./install_ruby.sh
+else
+    # Verifica la versión de Ruby instalada
+    ruby_version=$(ruby -v | awk '{print $2}')
+    if [[ "$ruby_version" != "3.2.3" ]]; then
+        echo "La versión de Ruby instalada no es la 3.2.3. Instalando la versión 3.2.3..."
+        # Ejecuta el script de instalación de Ruby 3.2.3
+        ./install_ruby.sh
+    else
+        echo "Ruby ya está instalado y es la versión 3.2.3"
+    fi
 fi
 
 # Verifica si Rails está instalado
