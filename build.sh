@@ -3,7 +3,11 @@
 echo "Iniciando script de construcción..."
 
 
-./install_ruby.sh
+if ! command -v rails &> /dev/null || [[ "$(ruby -v | awk '{print $2}')" != "3.2.3" ]]; then
+    install_ruby
+else
+    echo "Rails está instalado y la versión de Ruby es la 3.2.3"
+fi
 
 # Verifica si Rails está instalado
 if ! command -v rails &> /dev/null; then
@@ -17,6 +21,7 @@ if ! command -v rails &> /dev/null; then
   fi
 fi
 
+
 rails_version=$(rails -v | awk '{print $2}')
 desired_rails_version="7.1.3"
 
@@ -24,7 +29,7 @@ if [[ "$rails_version" != "$desired_rails_version" ]]; then
     echo "La versión de Rails instalada ($rails_version) no coincide con la versión deseada ($desired_rails_version). Instalando la versión deseada..."
 
     # Instala la versión específica de Rails
-    ./install_rails.sh
+    gem install rails -v 7.1.3
 
     # Verifica si la instalación fue exitosa
     if ! gem list rails -i -v "$desired_rails_version" &> /dev/null; then
@@ -45,6 +50,8 @@ bundle install
 
 echo "Creando la base de datos..."
 rails db:create
+
+rails db:seed
 
 echo "Compilando assets de Rails..."
 rails assets:precompile
