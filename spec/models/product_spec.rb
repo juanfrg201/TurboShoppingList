@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id               :integer          not null, primary key
+#  name             :string
+#  purchase_date    :date
+#  store_name       :string
+#  store_section_id :integer          not null
+#  purchased        :boolean
+#  quantity         :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 # spec/models/product_spec.rb
 require 'rails_helper'
 

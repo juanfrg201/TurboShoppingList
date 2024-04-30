@@ -61,6 +61,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rspec-viewcomponent'
+  gem 'annotate'
 end
 
 group :development do
