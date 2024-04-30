@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_products, only: [:index]
+  before_action :set_products, only: [:index, :create]
 
   # GET /products
   def index
@@ -31,7 +31,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
   # Marks a product as purchased and responds to the Turbo Stream or HTML request.
   # GET /products/:id/mark_as_purchased
   def mark_as_purchased
@@ -51,7 +50,6 @@ class ProductsController < ApplicationController
       end
     end
   end
-
 
   private
 

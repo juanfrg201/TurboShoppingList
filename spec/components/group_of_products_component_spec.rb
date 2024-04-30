@@ -21,6 +21,5 @@ RSpec.describe GroupOfProductsComponent, type: :component do
       expect(page).to have_css('.product-name', text: 'Product 1')
       expect(page).to have_css('.product-name', text: 'Product 2')
     end 
-    
   end
 end
