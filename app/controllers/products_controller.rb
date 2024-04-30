@@ -8,8 +8,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     respond_to do |format|
+      @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
       if @product.save
-        @products = Product.where(purchased: false).order(purchase_date: :asc).group_by(&:purchase_date)
         format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
         format.turbo_stream { render :create, locals: { products: @products } }
       else
