@@ -21,15 +21,19 @@
     <div class="field">
       <%= form.label :store_section_id, "Seccion de la tienda", class: "label", required: true %>
       <div class="control">
-        <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select", required: true %>
+        <div class="select is-fullwidth">
+          <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select", required: true %>
+        </div>
       </div>
     </div>
+
     <div class="field">
-      <%= form.label :purchased, "Comprado?", class: "checkbox" do %>
+      <label class="checkbox">
         <%= form.check_box :purchased, class: "checkbox" %>
-        ¿Comprado? (Marca esta casilla si el producto ha sido comprado)
-      <% end %>
+        <span class="ml-2">¿Comprado? (Marca esta casilla si el producto ha sido comprado)</span>
+      </label>
     </div>
+
     <div class="field">
       <%= form.label :quantity, "Cantidad", class: "label" %>
       <div class="control">
