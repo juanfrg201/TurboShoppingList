@@ -16,7 +16,6 @@ RSpec.describe NewProductFormComponent, type: :component do
     expect(page).to have_css('select')
     expect(page).to have_css('input[type="checkbox"]')
     expect(page).to have_css('input[type="number"]') 
-
   end
 end
 
