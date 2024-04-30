@@ -1,0 +1,22 @@
+<div class="box">
+  <div class="product-card" id="product_<%= @product.id %>" data-turbo-frame>
+    <article class="message">
+      <div class="message-body">
+        <h2><%= @product.name %></h2>
+        <p>Fecha: <%= l(@product.purchase_date , format: :default) %></p>
+      </div>
+      <% if !@product.purchased? %>
+        <%= turbo_frame_tag "mark_as_purshased" do %>
+          <%= form_with(model: @product, url: mark_as_purchased_product_path(@product), method: :put, local: true) do |form| %>
+            <div class="field is-grouped is-grouped-right"> <!-- Utiliza las clases de Bulma para alinear a la derecha -->
+              <div class="control">
+                <%= form.button "Comprar producto", class: "button is-info mark-as-purchased-btn", data: { product_id: @product.id } %>
+              </div>
+            </div>          
+          <% end %>
+        <% end %>
+      <% end %>
+    </article>
+  </div>
+</div>
+

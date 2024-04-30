@@ -7,10 +7,34 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'products' %> 
   </head>
 
   <body>
+    <section class="hero principal-background ">
+      <div class="hero-body">
+        <div class="columns">
+          <div class="column is-12">
+            <div class="container content">
+              <i class="is-large fab fa-discord"></i>
+              <i class="is-large fas fa-code"></i>
+              <h1 class="title has-text-light">Skydrop Lista de Compras</h1>
+              <h3 class="subtitle has-text-light">
+                Juan Felipe Ruiz
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <% flash.each do |type, message| %>
+      <div class="notification <%= flash_class(type) %>">
+        <button class="delete" onclick="this.parentElement.style.display='none'"></button>
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

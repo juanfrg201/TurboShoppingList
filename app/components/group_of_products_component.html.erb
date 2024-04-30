@@ -1,0 +1,10 @@
+<div id="<%= @container_id %>" class="group-of-products mt-3">
+  <h3><%= l(@date, format: :default) %></h3>
+  <div id="products" class="group-of-products">
+   <% @products.sort_by { |product| product.purchase_date }.each do |product| %>
+      <% if !product.purchased %>
+        <%= render ProductCardComponent.new(product: product) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

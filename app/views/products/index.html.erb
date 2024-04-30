@@ -1,0 +1,29 @@
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-3">
+        <aside class="is-medium menu">
+          <p class="menu-label is-flex">
+            Producto
+          </p>
+          <div class="is-flex mt-3">
+            <button class="button is-link" onclick="openModal()">
+              Crear producto
+            </button>
+          </div>
+        </aside>
+      </div>
+      <div class="column is-9">
+        <div class="content is-medium">
+          <h2 class="title is-3">Productos</h2>
+          <div id="products-container">
+            <% @products.each do |date, products| %>
+              <%= render GroupOfProductsComponent.new(products: products, date: date) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "create_popup" %>

@@ -1,0 +1,9 @@
+<div id="myModal" class="modal">
+  <div class="modal-background" onclick="closeModal()"></div>
+  <div class="modal-content popup">
+    <div class="box">
+      <%= render NewProductFormComponent.new(product: @product) %>
+    </div>
+  </div>
+  <button class="modal-close is-danger" aria-label="close" onclick="closeModal()"></button>
+</div>

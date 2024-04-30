@@ -1,0 +1,48 @@
+<%= turbo_frame_tag "new_product" do %>
+  <%= form_with(model: @product, local: true, class: "box") do |form| %>
+    <div class="field">
+      <%= form.label :name, "Nombre", class: "label", required: true %>
+      <div class="control">
+        <%= form.text_field :name, class: "input", placeholder: "Nombre del Producto", required: true, placeholder: "Nombre del producto" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :purchase_date, "Fecha de compra", class: "label", required: true %>
+      <div class="control">
+        <%= form.date_field :purchase_date, class: "input", required: true, value: Date.today %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :store_name, "Nombre de la tienda", class: "label", required: true, value: nil %>
+      <div class="control">
+        <%= form.text_field :store_name, class: "input" %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :store_section_id, "Seccion de la tienda", class: "label", required: true %>
+      <div class="control">
+        <%= form.select :store_section_id, options_for_select(StoreSection.all.map { |section| [section.name, section.id] }, StoreSection.last.id), {}, class: "select", required: true %>
+      </div>
+    </div>
+    <div class="field">
+      <%= form.label :purchased, "Comprado?", class: "checkbox" do %>
+        <%= form.check_box :purchased, class: "checkbox" %>
+        ¿Comprado? (Marca esta casilla si el producto ha sido comprado)
+      <% end %>
+    </div>
+    <div class="field">
+      <%= form.label :quantity, "Cantidad", class: "label" %>
+      <div class="control">
+        <%= form.number_field :quantity, class: "input" , required: true %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= form.submit "Agregar Producto", class: "button is-info", onclick: "closeModal()" %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+

@@ -1,0 +1,9 @@
+<% container_id = "products_#{product.purchase_date.strftime('%Y-%m-%d')}" %>
+
+<%= turbo_stream.remove product %>
+
+<% if Product.where(purchase_date: product.purchase_date, purchased: false).empty? %>
+  <%= turbo_stream.remove container_id %>
+<% end %>
+
+

@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Si estas en un operador Linux ejecuta los siguientes comandos 
+chmod +x install_ruby.sh
+chmod +x install_rails.sh
+chmod +x build.sh
 
-* Ruby version
+# Para instalar el entorno y verificar el vercionamiento de rails y ruby o si no se tiene instalado ejecutar este comando
 
-* System dependencies
+./build.sh  
 
-* Configuration
+#Este ejecutara una serie de scripts los cuales trataran de ver si tienes o no instalado rails o ruby y generar la instalacion
 
-* Database creation
+# Si el comando genera algun error seguir los siguientes pasos o si no se tiene linux
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  

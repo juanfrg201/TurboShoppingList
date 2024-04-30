@@ -1,0 +1,10 @@
+<%= turbo_stream.append "products-container" do %>
+  <% @products.each do |date, products| %>
+    <%= render GroupOfProductsComponent.new(products: products, date: date) %>
+  <% end %>
+<% end %>
+
+
+
+
+
