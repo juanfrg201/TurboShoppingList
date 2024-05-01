@@ -84,3 +84,66 @@ rails assets:precompile
 ```bash
 rails s
 ```
+
+## Si se encuentra en windonws descargar WSL(Subsistema de linux en windows)
+
+# Instalar WSL
+
+Abrir PowerShell en admin y ejecutar el siguiente comando
+```bash
+wsl --install
+```
+
+Ingresar a la Windows Store y descargar la distribucion Ubuntu he ingresar
+
+# Instalar Zhc
+
+Ya en la terminal Ubuntu 
+```bash
+sudo apt install git zsh
+```
+
+Poner zsh por defecto
+```bash
+chsh -s $(which zsh)
+```
+
+```bash
+INSTALAR OH MY ZSH
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+## Realizar los pasos de la primera parte de la instalacion para ejecutar la aplicacion
+
+# Instalacion MAC OS
+
+## Instalar HomeBrew
+
+```bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+# Actualizar 
+
+```bash
+brew update
+brew install git
+```
+
+# Instalar RVM
+```bash
+curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --rails
+```
+Instalar Ruby 
+```bash
+rvm install 3.2.3
+```
+Verificar que Ruby este instalado
+```bash
+ruby -v
+```
+
+# Instalar Rails 
+```bash
+gem install rails -v 7.1.3 --no-document
+```
