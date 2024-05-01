@@ -7,7 +7,7 @@ if ! command -v rbenv &> /dev/null; then
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
     echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    source ~/.bashrc
+    source ~/.zshrc
 fi
 
 # Instalación de ruby-build si no está instalado
