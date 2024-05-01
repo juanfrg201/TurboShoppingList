@@ -3,3 +3,7 @@
     <%= render GroupOfProductsComponent.new(products: products, date: date) %>
   <% end %>
 <% end %>
+
+<%= turbo_stream.replace "new_product" do %>
+  <%= render NewProductFormComponent.new(product: Product.new) %>
+<% end %>
