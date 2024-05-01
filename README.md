@@ -16,16 +16,16 @@ Luego, para instalar el entorno y verificar el versionamiento de Rails y Ruby o 
 ./build.sh
 ```
 
-# Instalación manual de Rails (Si el anterior comando te surgio algun error)
+# Instalación manual de Rails (Si el anterior comando te surgió algún error)
 
 ## Instalación de Ruby con rbenv
 
 ```bash
 sudo apt install rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc  #Verifica el nombre de tu bash profiel
-echo 'eval "$(rbenv init -)"' >> ~/.zshrc  #Verifica el nombre de tu bash profiel
-source ~/.zshrc  #Verifica el nombre de tu bash profiel
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc  #Verifica el nombre de tu bash profile
+echo 'eval "$(rbenv init -)"' >> ~/.zshrc  #Verifica el nombre de tu bash profile
+source ~/.zshrc  #Verifica el nombre de tu bash profile
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 rbenv install 3.2.3
 rbenv global 3.2.3
