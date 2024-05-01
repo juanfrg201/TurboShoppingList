@@ -96,7 +96,7 @@ wsl --install
 
 Ingresar a la Windows Store y descargar la distribucion Ubuntu he ingresar
 
-# Instalar Zhc
+# Instalar Zsh
 
 Ya en la terminal Ubuntu 
 ```bash
