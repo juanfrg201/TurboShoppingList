@@ -51,6 +51,9 @@ bundle install
 echo "Creando la base de datos..."
 rails db:create
 
+echo "Migrando la Base de datos"
+rails db:migrate
+
 rails db:seed
 
 echo "Compilando assets de Rails..."

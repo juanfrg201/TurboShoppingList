@@ -70,6 +70,11 @@ bundle install
 rails db:create
 ```
 
+## Migrar la BD
+```bash
+rails db:migrate
+```
+
 ## Genera los registros predefinidos:
 ```bash
 rails db:seed
