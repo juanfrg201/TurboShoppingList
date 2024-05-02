@@ -7,11 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-if StoreSection.all.present?
-  StoreSection.all.destroy_all
-  StoreSection.create(name: 'Meat')
-  StoreSection.create(name: 'Dairy')
-else
-  StoreSection.create(name: 'Meat')
-  StoreSection.create(name: 'Dairy')
+begin
+  StoreSection.destroy_all if StoreSection.exists?
+
+  sections = %w[Meat Dairy Pharmacy Food]
+
+  sections.each { |section| StoreSection.create!(name: section) }
+rescue ActiveRecord::RecordInvalid => e
+  puts "Error durante la creación de secciones de tienda: #{e.message}"
 end
