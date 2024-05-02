@@ -3,11 +3,7 @@
 echo "Iniciando script de construcción..."
 
 
-if ! command -v rails &> /dev/null || [[ "$(ruby -v | awk '{print $2}')" != "3.2.3" ]]; then
-    ./install_ruby.sh
-else
-    echo "Rails está instalado y la versión de Ruby es la 3.2.3"
-fi
+./install_ruby.sh
 
 # Verifica si Rails está instalado
 if ! command -v rails &> /dev/null; then

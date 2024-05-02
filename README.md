@@ -51,7 +51,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt-get update
 sudo apt-get install -y nodejs yarn
-gem install rails "7.1.3"
+gem install rails -v 7.1.3
 ```
 
 Si ya tienes Rails instalado pero necesitas la versión 7.1.3, simplemente ejecuta:
