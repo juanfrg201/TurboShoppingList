@@ -3,7 +3,17 @@
   <article class="message">
     <div class="message-body">
       <h2><%= @product.name %></h2>
-      <p>Fecha: <%= l(@product.purchase_date , format: :default) %></p>
+      <div class="columns is-mobile is-centered">
+        <div class="column has-text-centered">
+          <p><strong>Fecha:</strong> <%= l(@product.purchase_date, format: :default) %></p>
+        </div>
+        <div class="column has-text-centered">
+          <p><strong>Cantidad:</strong> <%= @product.quantity %></p>
+        </div>
+        <div class="column has-text-centered">
+          <p><strong>Sección de tienda:</strong> <%= @product.store_section.name %></p>
+        </div>
+      </div>
       <% if !@product.purchased? %>
         <%= turbo_frame_tag "mark_as_purshased" do %>
           <%= form_with(model: @product, url: mark_as_purchased_product_path(@product), method: :put, local: true) do |form| %>
