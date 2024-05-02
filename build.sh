@@ -4,7 +4,7 @@ echo "Iniciando script de construcción..."
 
 
 if ! command -v rails &> /dev/null || [[ "$(ruby -v | awk '{print $2}')" != "3.2.3" ]]; then
-    install_ruby
+    ./install_ruby.sh
 else
     echo "Rails está instalado y la versión de Ruby es la 3.2.3"
 fi
@@ -55,6 +55,8 @@ echo "Migrando la Base de datos"
 rails db:migrate
 
 rails db:seed
+
+yarn build:css
 
 echo "Compilando assets de Rails..."
 rails assets:precompile
